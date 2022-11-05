@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.StatusBar?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="System">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onLoadROMClicked" text="Load ROM"/>
+                        <Menu fx:id="mnuRecentROMs" disable="true" mnemonicParsing="false" text="Recent ROMs"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <CheckMenuItem fx:id="chkPauseResume" mnemonicParsing="false" text="Pause/Resume"/>
+                        <MenuItem mnemonicParsing="false" onAction="#onResetClicked" text="Reset"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#onQuickSaveClicked" text="Quick Save">
+                            <accelerator>
+                                <KeyCodeCombination alt="ANY" code="F1" control="UP" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onQuickLoadClicked" text="Quick Load">
+                            <accelerator>
+                                <KeyCodeCombination alt="ANY" code="F2" control="UP" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                        <Menu fx:id="mnuQuickSlots" mnemonicParsing="false" text="Select State Slot">
+                            <items>
+                                <RadioMenuItem mnemonicParsing="false" onAction="#onQuickSlotClicked" selected="true"
+                                               text="Slot 1">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="tgrpStateSlot"/>
+                                    </toggleGroup>
+                                </RadioMenuItem>
+                                <RadioMenuItem mnemonicParsing="false" onAction="#onQuickSlotClicked" text="Slot 2"
+                                               toggleGroup="$tgrpStateSlot"/>
+                                <RadioMenuItem mnemonicParsing="false" onAction="#onQuickSlotClicked" text="Slot 3"
+                                               toggleGroup="$tgrpStateSlot"/>
+                                <RadioMenuItem mnemonicParsing="false" onAction="#onQuickSlotClicked" text="Slot 4"
+                                               toggleGroup="$tgrpStateSlot"/>
+                                <RadioMenuItem mnemonicParsing="false" onAction="#onQuickSlotClicked" text="Slot 5"
+                                               toggleGroup="$tgrpStateSlot"/>
+                            </items>
+                        </Menu>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#onSettingsClicked" text="Settings"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#onShutdownClicked" text="Shutdown"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Debug">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onShowMemoryViewer" text="Show Memory Viewer"/>
+                        <MenuItem fx:id="mnuCartridgeHeader" disable="true" mnemonicParsing="false"
+                                  onAction="#onShowCartridgeHeader" text="Show Cartridge Header"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onAboutClicked" text="Third Party Software"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane styleClass="logo-background">
+            <children>
+                <ImageView fitHeight="349.0" fitWidth="653.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <image>
+                        <Image url="/fxml/images/guide_logo.png"/>
+                    </image>
+                </ImageView>
+            </children>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+        </AnchorPane>
+        <StatusBar fx:id="stbStatus" text="No Cartridge Loaded"/>
+    </children>
+</VBox>

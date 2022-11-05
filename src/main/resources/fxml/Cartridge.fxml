@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0"
+      spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label text="Cartridge Information">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Separator prefWidth="200.0"/>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity"
+                                   prefWidth="160.0"/>
+                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label text="Title:"/>
+                <Label text="Platform:" GridPane.rowIndex="1"/>
+                <Label text="Destination:" GridPane.rowIndex="2"/>
+                <Label text="Controller:" GridPane.rowIndex="3"/>
+                <Label text="Has Real Time Clock:" GridPane.rowIndex="4"/>
+                <Label text="Has Rumble:" GridPane.rowIndex="5"/>
+                <Label text="Has Battery:" GridPane.rowIndex="6"/>
+                <Label text="Available ROM:" GridPane.rowIndex="7"/>
+                <Label text="Available RAM:" GridPane.rowIndex="8"/>
+                <Label fx:id="lblTitle" text="UNDEFINED" GridPane.columnIndex="1"/>
+                <Label fx:id="lblPlatform" text="UNDEFINED" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label fx:id="lblDestination" text="UNDEFINED" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label fx:id="lblController" text="UNDEFINED" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Label fx:id="lblHasRTC" text="UNDEFINED" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Label fx:id="lblHasRumble" text="UNDEFINED" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <Label fx:id="lblHasBattery" text="UNDEFINED" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                <Label fx:id="lblAvailableROM" text="UNDEFINED" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                <Label fx:id="lblAvailableRAM" text="UNDEFINED" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+            </children>
+        </GridPane>
+        <Separator prefWidth="200.0"/>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+            <buttons>
+                <Button mnemonicParsing="false" onAction="#onClosePressed" text="Close"/>
+            </buttons>
+        </ButtonBar>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

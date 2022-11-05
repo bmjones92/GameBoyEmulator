@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+javafx {
+    version = '19'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+application {
+    mainClass = 'org.guide.App'
+}
+
+group 'org.guide'
+version '1.0-SNAPSHOT'
+
+project.ext.lwjglVersion = "3.3.1"
+project.ext.lwjglNatives = "natives-windows"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Logging framework
+    implementation 'ch.qos.logback:logback-core:1.4.4'
+    implementation 'ch.qos.logback:logback-classic:1.4.4'
+    implementation 'org.slf4j:slf4j-api:2.0.3'
+
+    // Utilities
+    implementation 'com.google.code.gson:gson:2.10'
+
+    // LWJGL
+    implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+    implementation "org.lwjgl:lwjgl"
+    implementation "org.lwjgl:lwjgl-glfw"
+    implementation "org.lwjgl:lwjgl-opengl"
+    implementation "org.lwjgl:lwjgl-stb"
+    runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-stb::$lwjglNatives"
+
+    // JavaFX Libraries
+    implementation 'org.controlsfx:controlsfx:11.1.2'
+    implementation 'org.hildan.fxgson:fx-gson:4.0.1'
+}

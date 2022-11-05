@@ -1,0 +1,69 @@
+.table-view {
+    -fx-selection-bar: transparent;
+    -fx-selection-bar-non-focused: transparent;
+}
+
+.table-cell, .table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-cell {
+    -fx-text-fill: black;
+}
+
+#jumpContainer .label {
+    -fx-padding: 10.0, 20.0, 10.0, 20.0;
+    -fx-max-width: Infinity;
+}
+
+.memory-block-cartridge-rom-0 {
+    -fx-background-color: #DDDDFF;
+}
+
+.memory-block-cartridge-rom-n {
+    -fx-background-color: #DDFFDD;
+}
+
+.memory-block-video-ram {
+    -fx-background-color: #DDFFFF;
+}
+
+.memory-block-cartridge-ram {
+    -fx-background-color: #FFDDDD;
+}
+
+.memory-block-work-ram-0 {
+    -fx-background-color: #FFDDFF;
+}
+
+.memory-block-work-ram-n {
+    -fx-background-color: #FFFFDD;
+}
+
+.memory-block-oam {
+    -fx-background-color: #DDDDFF;
+}
+
+.memory-block-io-registers {
+    -fx-background-color: #DDFFDD;
+}
+
+.memory-block-high-ram {
+    -fx-background-color: #DDFFFF;
+}
+
+.memory-block-interrupt-register {
+    -fx-background-color: #FFDDDD;
+}
+
+.memory-block-disabled {
+    -fx-background-color: #DDDDDD;
+}
+
+.active-config-button {
+    -fx-background-color: #9999CC;
+}
+
+.logo-background {
+    -fx-background-color: #404040;
+}

@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <tabs>
+                <Tab text="Emulator Settings">
+                    <content>
+                        <VBox spacing="5.0">
+                            <children>
+                                <TitledPane animated="false" collapsible="false" prefHeight="100.0" text="General">
+                                    <content>
+                                        <GridPane hgap="10.0" vgap="10.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES"
+                                                                   maxWidth="-Infinity" minWidth="-Infinity"
+                                                                   prefWidth="175.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity"
+                                                                   minWidth="-Infinity"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
+                                                                vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <children>
+                                                <Label text="Preserve Aspect Ratio"/>
+                                                <CheckBox fx:id="chkPreserveAspectRatio" mnemonicParsing="false"
+                                                          onAction="#enableApplyButton" GridPane.columnIndex="1">
+                                                    <tooltip>
+                                                        <Tooltip
+                                                                text="Preserves the aspect ratio of the original hardware by adding black bars to the edges of the screen."/>
+                                                    </tooltip>
+                                                </CheckBox>
+                                                <Label text="Pause on Focus Lost" GridPane.rowIndex="1"/>
+                                                <CheckBox fx:id="chkPauseOnFocusLost" mnemonicParsing="false"
+                                                          onAction="#enableApplyButton" GridPane.columnIndex="1"
+                                                          GridPane.rowIndex="1">
+                                                    <tooltip>
+                                                        <Tooltip
+                                                                text="Automatically pauses the emulator when it does not have focus."/>
+                                                    </tooltip>
+                                                </CheckBox>
+                                                <Label text="Joystick Deadzone" GridPane.rowIndex="2"/>
+                                                <Slider fx:id="sldDeadzone" blockIncrement="0.25" majorTickUnit="0.25"
+                                                        max="1.0" maxWidth="-Infinity" minorTickCount="4"
+                                                        showTickLabels="true" showTickMarks="true" snapToTicks="true"
+                                                        GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                    <tooltip>
+                                                        <Tooltip
+                                                                text="How far from the resting position the joystick must be moved before input is activated."/>
+                                                    </tooltip>
+                                                </Slider>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                            </padding>
+                                        </GridPane>
+                                    </content>
+                                </TitledPane>
+                                <TitledPane collapsible="false" text="Message Overlay Settings">
+                                    <content>
+                                        <GridPane hgap="10.0" vgap="10.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity"
+                                                                   minWidth="-Infinity" prefWidth="175.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity"
+                                                                   minWidth="-Infinity"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="-Infinity" minHeight="10.0"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="-Infinity" minHeight="10.0"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0"
+                                                                vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <children>
+                                                <Label text="Enable Message Overlay"/>
+                                                <CheckBox fx:id="chkMessageEnable" mnemonicParsing="false"
+                                                          onAction="#enableApplyButton" GridPane.columnIndex="1">
+                                                    <tooltip>
+                                                        <Tooltip
+                                                                text="Displays emulator status messages on the emulator window."/>
+                                                    </tooltip>
+                                                </CheckBox>
+                                                <Label text="Font Size" GridPane.rowIndex="1"/>
+                                                <PrefixSelectionComboBox fx:id="cmbMessageFontSize"
+                                                                         onAction="#enableApplyButton" prefWidth="150.0"
+                                                                         GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                    <tooltip>
+                                                        <Tooltip
+                                                                text="The size of the font used for overlay messages."/>
+                                                    </tooltip>
+                                                </PrefixSelectionComboBox>
+                                                <ColorPicker fx:id="clrMessageFontColor" onAction="#enableApplyButton"
+                                                             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                                <Label text="Font Color" GridPane.rowIndex="2"/>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                            </padding>
+                                        </GridPane>
+                                    </content>
+                                </TitledPane>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Input Bindings">
+                    <content>
+                        <HBox spacing="5.0">
+                            <children>
+                                <AnchorPane>
+                                    <children>
+                                        <ImageView fitHeight="500.0" fitWidth="300.0" pickOnBounds="true"
+                                                   preserveRatio="true" AnchorPane.bottomAnchor="0.0"
+                                                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                   AnchorPane.topAnchor="0.0">
+                                            <image>
+                                                <Image url="/fxml/images/gameboy_base.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <Rectangle fx:id="overlayBackground" fill="#00000080" height="500.0"
+                                                   stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0"
+                                                   width="300.0" AnchorPane.bottomAnchor="0.0"
+                                                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                   AnchorPane.topAnchor="0.0"/>
+                                        <Circle fx:id="overlayHighlight" fill="#ffffff00" radius="30.0" stroke="RED"
+                                                strokeType="INSIDE" strokeWidth="2.0"/>
+                                    </children>
+                                </AnchorPane>
+                                <Separator orientation="VERTICAL"/>
+                                <VBox>
+                                    <children>
+                                        <Accordion>
+                                            <panes>
+                                                <TitledPane text="GameBoy Bindings">
+                                                    <content>
+                                                        <GridPane alignment="TOP_CENTER" hgap="10.0"
+                                                                  maxHeight="-Infinity">
+                                                            <columnConstraints>
+                                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES"
+                                                                                   minWidth="-Infinity"/>
+                                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
+                                                                                   minWidth="-Infinity"/>
+                                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
+                                                                                   minWidth="-Infinity"/>
+                                                            </columnConstraints>
+                                                            <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                            </rowConstraints>
+                                                            <children>
+                                                                <Label text="Up:" GridPane.rowIndex="1"/>
+                                                                <Label text="Right:" GridPane.rowIndex="2"/>
+                                                                <Label text="Down:" GridPane.rowIndex="3"/>
+                                                                <Label text="Left:" GridPane.rowIndex="4"/>
+                                                                <Label text="Select:" GridPane.rowIndex="5"/>
+                                                                <Label text="Start:" GridPane.rowIndex="6"/>
+                                                                <Label text="B:" GridPane.rowIndex="7"/>
+                                                                <Label text="A:" GridPane.rowIndex="8"/>
+                                                                <Label text="GameBoy Button"
+                                                                       GridPane.halignment="CENTER">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0"/>
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="Keyboard Input" GridPane.columnIndex="1">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0"/>
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="Gamepad Input" GridPane.columnIndex="2">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0"/>
+                                                                    </font>
+                                                                </Label>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyUp"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputUpMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="1"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyRight"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputRightMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="2"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyDown"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputDownMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="3"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyLeft"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputLeftMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="4"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeySelect"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputSelectMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="5"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyStart"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputStartMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="6"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyB"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputBMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="7"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyA"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputAMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="8"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadUp"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputUpMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="1"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadRight"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputRightMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="2"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadDown"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputDownMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="3"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadLeft"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputLeftMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="4"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadSelect"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputSelectMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="5"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadStart"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputStartMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="6"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadB"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputBMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="7"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadA"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         onMouseEntered="#onInputAMouseEntered"
+                                                                                         onMouseExited="#onInputBindingMouseExited"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="8"/>
+                                                            </children>
+                                                        </GridPane>
+                                                    </content>
+                                                </TitledPane>
+                                                <TitledPane expanded="false" text="Hotkey Bindings">
+                                                    <content>
+                                                        <GridPane alignment="CENTER" hgap="10.0" maxHeight="-Infinity">
+                                                            <columnConstraints>
+                                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES"
+                                                                                   minWidth="-Infinity"/>
+                                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
+                                                                                   minWidth="-Infinity"/>
+                                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
+                                                                                   minWidth="-Infinity"/>
+                                                            </columnConstraints>
+                                                            <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                                vgrow="SOMETIMES"/>
+                                                            </rowConstraints>
+                                                            <children>
+                                                                <Label prefWidth="107.0" text="Hotkey Command">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0"/>
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="Keyboard Input" GridPane.columnIndex="1">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0"/>
+                                                                    </font>
+                                                                </Label>
+                                                                <Label text="Pause/Resume:" GridPane.halignment="RIGHT"
+                                                                       GridPane.rowIndex="1"/>
+                                                                <Label text="Step Forward:" GridPane.halignment="RIGHT"
+                                                                       GridPane.rowIndex="2"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyPauseResume"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="1"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyStepForward"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="2"/>
+                                                                <Label text="Gamepad Input" GridPane.columnIndex="2">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="12.0"/>
+                                                                    </font>
+                                                                </Label>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadPauseResume"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="1"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadStepForward"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="2"/>
+                                                                <Label text="Quick Save:" GridPane.rowIndex="4"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyQuickSave"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="4"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadQuickSave"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="4"/>
+                                                                <Label text="Quick Load:" GridPane.rowIndex="5"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyQuickLoad"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="5"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadQuickLoad"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="5"/>
+                                                                <Label text="Step Frame:" GridPane.rowIndex="3"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputKeyStepFrame"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="1"
+                                                                                         GridPane.rowIndex="3"/>
+                                                                <PrefixSelectionComboBox fx:id="cmbInputPadStepFrame"
+                                                                                         maxWidth="-Infinity"
+                                                                                         minWidth="-Infinity"
+                                                                                         onAction="#enableApplyButton"
+                                                                                         prefWidth="120.0"
+                                                                                         GridPane.columnIndex="2"
+                                                                                         GridPane.rowIndex="3"/>
+                                                                <Label text="Previous Quickslot:"
+                                                                       GridPane.rowIndex="6"/>
+                                                                <PrefixSelectionComboBox
+                                                                        fx:id="cmbInputKeyPrevQuickslot"
+                                                                        maxWidth="-Infinity" minWidth="-Infinity"
+                                                                        onAction="#enableApplyButton" prefWidth="120.0"
+                                                                        GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                                                                <Label text="Next Quickslot:" GridPane.rowIndex="7"/>
+                                                                <PrefixSelectionComboBox
+                                                                        fx:id="cmbInputPadPrevQuickslot"
+                                                                        maxWidth="-Infinity" minWidth="-Infinity"
+                                                                        onAction="#enableApplyButton" prefWidth="120.0"
+                                                                        GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                                                                <PrefixSelectionComboBox
+                                                                        fx:id="cmbInputKeyNextQuickslot"
+                                                                        maxWidth="-Infinity" minWidth="-Infinity"
+                                                                        onAction="#enableApplyButton" prefWidth="120.0"
+                                                                        GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                                                                <PrefixSelectionComboBox
+                                                                        fx:id="cmbInputPadNextQuickslot"
+                                                                        maxWidth="-Infinity" minWidth="-Infinity"
+                                                                        onAction="#enableApplyButton" prefWidth="120.0"
+                                                                        GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+                                                            </children>
+                                                        </GridPane>
+                                                    </content>
+                                                </TitledPane>
+                                            </panes>
+                                        </Accordion>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </padding>
+                        </HBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <Separator prefWidth="200.0"/>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+            <buttons>
+                <Button fx:id="btnOK" mnemonicParsing="false" onAction="#onOKPressed" text="OK"/>
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#onCancelPressed" text="Cancel"/>
+                <Button fx:id="btnApply" disable="true" mnemonicParsing="false" onAction="#onApplyPressed"
+                        text="Apply"/>
+            </buttons>
+            <VBox.margin>
+                <Insets left="8.0" right="8.0"/>
+            </VBox.margin>
+        </ButtonBar>
+    </children>
+</VBox>
